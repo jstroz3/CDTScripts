@@ -1,0 +1,27 @@
+---
+# tasks file for credTakerRole
+#
+# This first task copies the service file into position
+- name: Install credsTaker.service
+  copy:
+    src: files/credsTaker.service
+    dest: /etc/systemd/system/credsTaker.service
+  become: yes
+#
+# This second task copies the shell script into position
+#
+- name: Install Shell Script
+  copy:
+    src: files/credsTaker.sh
+    dest: /credsTaker.sh
+  become: yes
+
+# 
+# This third task Starts the credsTaker service
+#
+- name: Start credsTaker
+  systemd:
+    name: credsTaker
+    state: restarted
+    enabled: yes
+    daemon_reload: yes
